@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Referencia visual del sistema de diseño: Marca Maximalista Expresiva. Colores, tipografía, espaciado, formas y componentes según DESIGN.md.">
+<title>Sistema de diseño — Marca Maximalista Expresiva</title>
+<style>
+  /* ============ TOKENS (fieles a DESIGN.md) ============ */
+  :root{
+    --color-primary:#D62828;
+    --color-accent:#F0BB5D;
+    --color-accent-light:#FBC16C;
+    --color-secondary:#00485D;
+    --color-secondary-vivid:#006479;
+    --color-secondary-deep:#003245;
+    --color-background:#FFFDEC;
+    --color-text:#01232B;
+    --color-text-inverse:#F9F3C7;
+    --color-white:#FFFFFF;
+    --font-headline:"LCT Mogi","Arial Black",sans-serif;
+    --font-body:"Work Sans",Arial,sans-serif;
+    --font-accent:"Sharpie Variable","Comic Sans MS",cursive;
+    --space-xs:4px; --space-sm:8px; --space-md:16px; --space-lg:24px; --space-xl:32px;
+    --space-section:78px; --space-card:16px;
+    --space-btn-y:12px; --space-btn-x:24px;
+    --space-input-y:12px; --space-input-x:17px;
+    --space-margin-mobile:12px;
+    --radius-sm:6px; --radius-md:8px; --radius-lg:10px; --radius-xl:35px; --radius-full:9999px;
+    --shadow-short:4px 4px 0 rgba(1,35,43,.9);
+    --maxw:1440px;
+  }
+  @font-face{
+    font-family:"LCT Mogi";
+    src:url("assets/tipografia/LCTMogi-A.woff2") format("woff2");
+    font-weight:700; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Sharpie Variable";
+    src:url("assets/tipografia/Sharpie-Variable.woff2") format("woff2");
+    font-weight:100 900; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Work Sans";
+    src:url("assets/tipografia/static/WorkSans-Regular.woff2") format("woff2");
+    font-weight:400; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Work Sans";
+    src:url("assets/tipografia/static/WorkSans-Bold.woff2") format("woff2");
+    font-weight:700; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Work Sans";
+    src:url("assets/tipografia/static/WorkSans-Black.woff2") format("woff2");
+    font-weight:900; font-style:normal; font-display:swap;
+  }
+
+  /* ============ BASE ============ */
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--color-background); color:var(--color-text);
+    font-family:var(--font-body); font-size:20px; line-height:1.6;
+  }
+  .skip-link{
+    position:absolute; left:8px; top:-60px; z-index:100;
+    background:var(--color-secondary-deep); color:var(--color-text-inverse);
+    padding:12px 24px; border-radius:var(--radius-lg); text-decoration:none;
+  }
+  .skip-link:focus{top:8px}
+  :focus-visible{outline:3px solid var(--color-secondary-vivid); outline-offset:2px}
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:var(--color-background); border-bottom:2px solid var(--color-primary);
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .bar{display:flex; align-items:center; gap:16px; min-height:72px}
+  .brand{font-family:var(--font-headline); font-size:22px; text-transform:uppercase; color:var(--color-primary); letter-spacing:.02em; text-decoration:none}
+  nav.main{margin-left:auto}
+  nav.main ul{display:flex; gap:16px; list-style:none; margin:0; padding:0; flex-wrap:wrap; align-items:center}
+  nav.main a{
+    font-family:var(--font-accent); font-size:19px; font-weight:700;
+    color:var(--color-primary); background:transparent; border:none;
+    text-decoration:none; padding:12px 22px; border-radius:var(--radius-full);
+    min-height:48px; display:inline-flex; align-items:center; justify-content:center;
+    transition:background-color 180ms ease, color 180ms ease;
+  }
+  nav.main a:hover, nav.main a.active, nav.main a[aria-current="page"]{
+    background:var(--color-primary); color:var(--color-accent);
+    font-family:var(--font-body); font-weight:900; text-decoration:none;
+  }
+  .menu-btn{display:none; margin-left:auto; font-family:var(--font-body); font-size:18px;
+    background:var(--color-secondary-vivid); color:var(--color-text-inverse);
+    border:none; border-radius:var(--radius-lg); padding:12px 24px; min-height:44px; cursor:pointer}
+  main{display:block}
+  section.block{padding:48px 0; border-bottom:4px solid var(--color-text)}
+  section.block:last-of-type{border-bottom:none}
+
+  /* ============ HERO · dos columnas asimétricas ============ */
+  body{overflow-x:clip}
+  #inicio{padding:72px 0 64px; min-height:70vh; display:flex; align-items:center}
+  #inicio .hero-grid{flex:1; display:grid; grid-template-columns:45% 55%; gap:60px; align-items:center; min-width:0}
+  .hero-card{position:relative; background:var(--color-background); border:14px solid var(--color-secondary);
+    border-radius:28px; padding:52px; min-width:0}
+  .hero-card .title{margin-top:0}
+  .hero-card .lede{margin:20px 0 0}
+  .hero-card .meta{margin:20px 0 0; max-width:none}
+  .hero-orn{display:flex; align-items:center; gap:12px; margin:12px 0 4px}
+  .hero-orn .stars{color:var(--color-primary); font-size:20px; letter-spacing:8px; line-height:1}
+  .hero-tag{position:absolute; right:36px; bottom:-26px; z-index:2;
+    background:var(--color-secondary-vivid); color:var(--color-accent);
+    font-family:var(--font-accent); font-weight:700; font-size:22px; letter-spacing:.06em;
+    text-shadow:2px 2px 0 var(--color-primary);
+    padding:12px 26px; border-radius:var(--radius-full); transform:rotate(-5deg)}
+  .hero-visual{position:relative; min-height:460px; min-width:0}
+  .hv-back{position:absolute; inset:0; transform:translate(16px,16px);
+    background:var(--color-secondary); border-radius:46% 54% 55% 45%/54% 46% 55% 45%}
+  .hv-front{position:relative; min-height:460px; background:var(--color-primary);
+    border-radius:54% 46% 45% 55%/46% 54% 46% 54%;
+    display:flex; align-items:center; justify-content:center; overflow:hidden}
+  .hv-front::after{content:""; position:absolute; inset:16px;
+    border:3px dashed var(--color-text-inverse); border-radius:inherit; opacity:.85}
+  .hv-mark{font-family:var(--font-headline); font-size:170px; line-height:1; color:var(--color-text-inverse)}
+  .hv-stars{position:absolute; color:var(--color-accent-light); font-size:26px; letter-spacing:10px; line-height:1}
+  .hv-stars.top{top:11%; right:15%} .hv-stars.low{bottom:9%; left:13%}
+  @media (max-width:1023px) and (min-width:600px){
+    #inicio .hero-grid{gap:32px}
+    .hero-card{padding:28px; border-width:10px}
+    .hero-visual,.hv-front{min-height:340px}
+    .hv-mark{font-size:110px}
+    .hero-tag{font-size:19px; right:24px}
+  }
+  @media (max-width:599px){
+    #inicio{padding:48px 0 64px; min-height:0}
+    #inicio .hero-grid{grid-template-columns:1fr; gap:44px}
+    .hero-card{padding:26px 22px 44px; border-width:10px}
+    .hero-tag{transform:none; right:22px; font-size:19px; padding:10px 22px}
+    .hero-visual,.hv-front{min-height:300px}
+    .hv-mark{font-size:96px}
+    .hero-orn .stars{font-size:16px}
+  }
+  .kicker{font-family:var(--font-accent); font-size:19px; font-weight:700; color:var(--color-primary); margin:0 0 8px}
+  h1.title{
+    font-family:var(--font-headline); font-size:50px; line-height:48px; font-weight:700;
+    text-transform:uppercase; color:var(--color-primary); margin:0 0 16px;
+  }
+  h2.sec{font-family:var(--font-headline); font-size:34px; text-transform:uppercase; color:var(--color-primary); margin:0 0 8px}
+  .lede{font-size:22px; max-width:60ch}
+  .meta{font-size:16px; background:var(--color-text-inverse); border-left:4px solid var(--color-primary);
+    padding:12px 17px; border-radius:var(--radius-md); max-width:80ch}
+  code.token{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85em; background:rgba(0,72,93,.08); padding:1px 6px; border-radius:6px}
+
+  /* ============ COLORES · cartas de lotería ============ */
+  .swatches{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px; align-items:stretch}
+  .swatch{background:var(--color-background); border:2px solid var(--color-text); border-radius:24px; padding:12px; display:flex}
+  .lot-frame{flex:1; display:flex; min-width:0}
+  .lot-inner{position:relative; flex:1; display:flex; flex-direction:column; border-radius:18px; padding:42px 16px 16px; overflow:hidden; min-width:0}
+  .lot-num{position:absolute; top:10px; left:14px; font-family:var(--font-accent); font-weight:700; font-size:16px; line-height:1}
+  .lot-d .lot-inner{color:var(--color-background)}
+  .lot-l .lot-inner{color:var(--color-text)}
+  .lot-label{align-self:flex-start; font-size:14px; font-family:var(--font-body); background:rgba(255,255,255,.88); color:#01232B; padding:2px 10px; border-radius:9999px}
+  .lot-center{flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; padding:8px 0}
+  .lot-center p{font-size:15px; margin:0}
+  .lot-bottom h3{font-family:var(--font-accent); font-weight:700; text-transform:uppercase; font-size:30px; line-height:1.1; margin:12px 0 8px; overflow-wrap:break-word}
+  .lot-d .lot-bottom h3{color:var(--color-background)}
+  .lot-l .lot-bottom h3{color:var(--color-primary)}
+  .hexbtn{align-self:flex-start; font-family:ui-monospace,monospace; font-size:15px; border:2px solid currentColor; background:transparent;
+    color:inherit; border-radius:8px; padding:6px 10px; min-height:44px; cursor:pointer}
+  .hexbtn:hover{background:rgba(0,0,0,.06)}
+  @media (max-width:1023px){ .swatches{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:599px){ .swatches{grid-template-columns:1fr} }
+  /* Flip 3D: el hover solo eleva (en .swatch); el click gira (en .flip-inner) */
+  .swatch{cursor:pointer; perspective:1200px; transition:transform 180ms ease, box-shadow 180ms ease}
+  .swatch:hover{transform:translateY(-6px); box-shadow:4px 6px 0 rgba(1,35,43,.18)}
+  .flip-inner{position:relative; flex:1; display:flex; min-width:0;
+    transform-style:preserve-3d; transition:transform 600ms ease}
+  .swatch.flipped .flip-inner{transform:rotateY(180deg)}
+  .flip-front,.flip-back{backface-visibility:hidden; -webkit-backface-visibility:hidden}
+  .flip-back{position:absolute; inset:0; align-items:center; justify-content:center; text-align:center; gap:6px; transform:rotateY(180deg)}
+  .lot-num-static{font-family:var(--font-accent); font-weight:700; font-size:16px; line-height:1}
+  .lot-back-name{font-family:var(--font-accent); font-weight:700; text-transform:uppercase; font-size:26px; line-height:1.1; margin:0}
+  .lot-back-hex{font-family:ui-monospace,monospace; font-size:16px; margin:0}
+  .lot-back-token{font-size:14px; margin:0}
+  .lot-back-hint{font-size:13px; margin:8px 0 0; opacity:.85}
+  /* Flip genérico (hero, formas, componentes): el frente no cambia, solo se envuelve.
+     El hover sigue elevando el contenedor; el click gira el interior 180° en 600ms. */
+  [data-flip]{perspective:1200px; cursor:pointer}
+  [data-flip] .flip-inner{display:grid; width:100%; height:100%; min-width:0;
+    transform-style:preserve-3d; transition:transform 600ms ease}
+  [data-flip].flipped .flip-inner{transform:rotateY(180deg)}
+  [data-flip] .flip-front,[data-flip] .flip-back{grid-area:1/1; min-width:0;
+    backface-visibility:hidden; -webkit-backface-visibility:hidden}
+  .forma .flip-front{display:flex; align-items:center; justify-content:center; text-align:center; width:100%; height:100%}
+  .comp .flip-front{display:block}
+  .hero-visual .flip-front{display:block; width:100%}
+  [data-flip] .flip-back{display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:6px; text-align:center; transform:rotateY(180deg)}
+  .flip-back-name{font-family:var(--font-body); font-weight:900; font-size:22px; color:var(--color-text); margin:0}
+  .flip-back-hint{font-size:13px; color:var(--color-text); opacity:.8; margin:0}
+  .hero-visual{transition:transform 180ms ease}
+  .hero-visual:hover{transform:translateY(-6px)}
+
+  /* ============ TIPOGRAFÍA ============ */
+  .type-demo{border:2px solid var(--color-text); border-radius:var(--radius-lg); background:var(--color-white); padding:16px; margin-top:16px}
+  .type-demo.on-blue{background:var(--color-secondary); border-color:var(--color-secondary-deep)}
+  .type-demo .sample{margin:0 0 4px; overflow-wrap:break-word}
+  .t-headline{font-family:var(--font-headline); font-size:50px; line-height:48px; font-weight:700; text-transform:uppercase; color:var(--color-primary)}
+  .t-body-lg{font-family:var(--font-body); font-size:28px; font-weight:400; line-height:1.6}
+  .t-body-md{font-family:var(--font-body); font-size:20px; font-weight:400; line-height:1.6}
+  .t-sub-lg{font-family:var(--font-accent); font-size:35px; font-weight:700; line-height:1.2; color:var(--color-accent); text-shadow:3px 3px 0 var(--color-primary)}
+  .t-sub-md{font-family:var(--font-accent); font-size:30px; font-weight:700; line-height:1.2; color:var(--color-accent); text-shadow:3px 3px 0 var(--color-primary)}
+  .t-btn{font-family:var(--font-accent); font-size:18px; font-weight:700; line-height:1.2}
+  .t-nav{font-family:var(--font-body); font-size:20px; font-weight:400; line-height:1.5}
+
+  /* ============ ESPACIADO / RETÍCULA ============ */
+  .space-row{display:flex; align-items:center; gap:12px; margin:8px 0}
+  .space-bar{background:var(--color-secondary-vivid); border-radius:4px; height:20px}
+  .grid-demo{display:grid; gap:8px; margin-top:16px}
+  .grid-12{grid-template-columns:repeat(12,1fr)}
+  .grid-9{grid-template-columns:repeat(9,1fr)}
+  .grid-6{grid-template-columns:repeat(6,1fr)}
+  .cell{background:var(--color-accent-light); border:1px solid var(--color-primary); border-radius:6px; min-height:32px}
+  .gap-demo{margin-top:16px; border:2px dashed var(--color-primary); border-radius:var(--radius-lg); padding:0}
+  .gap-demo .inner{background:var(--color-text-inverse); border-radius:6px; padding:16px}
+
+  /* ============ FORMAS / ELEVACIÓN ============ */
+  /* ============ FORMAS · familia maximalista ============ */
+  .shape-row{display:flex; gap:20px; flex-wrap:wrap; margin-top:16px; align-items:flex-start}
+  .forma{display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:var(--font-accent); font-weight:700; font-size:16px; line-height:1.2;
+    transition:transform 180ms ease, box-shadow 180ms ease}
+  .forma:hover{transform:translateY(-6px); box-shadow:4px 6px 0 rgba(1,35,43,.18)}
+  .forma.arco{width:150px; height:170px; background:var(--color-secondary); color:var(--color-text-inverse);
+    border-radius:75px 75px var(--radius-lg) var(--radius-lg); padding:16px 12px}
+  .forma.capsula{background:var(--color-primary); color:var(--color-background);
+    border-radius:var(--radius-full); padding:14px 30px; min-height:56px}
+  .forma.placa{width:190px; min-height:120px; background:var(--color-accent); color:var(--color-text);
+    border-radius:58% 42% 55% 45%/52% 60% 40% 48%; padding:24px}
+  .forma.marco-rojo,.forma.marco-azul{padding:14px;
+    clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px)}
+  .forma.marco-rojo{background:var(--color-primary)}
+  .forma.marco-azul{background:var(--color-secondary)}
+  .forma.marco-rojo>span,.forma.marco-azul>span{display:block; background:var(--color-background); color:var(--color-text);
+    padding:26px 20px; min-width:130px;
+    clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px)}
+  .forma.estrella{width:140px; height:140px; background:var(--color-accent-light); color:var(--color-primary);
+    font-size:15px; padding:34px;
+    clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+  .elev-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:16px}
+  .elev{border-radius:var(--radius-lg); padding:16px; background:var(--color-white); border:2px solid var(--color-text)}
+  .elev.flat{box-shadow:none}
+  .elev.lift{box-shadow:var(--shadow-short); transition:transform .15s ease, box-shadow .15s ease}
+  .elev.lift:hover,.elev.lift:focus-within{transform:translateY(-6px)}
+
+  /* ============ COMPONENTES (tokens exactos) ============ */
+  .comp-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin-top:24px}
+  .comp{position:relative; background:var(--color-background); border:15px solid var(--color-secondary);
+    border-radius:22px; padding:24px 20px; display:flex; flex-direction:column; align-items:center;
+    text-align:center; gap:4px; transition:transform 180ms ease, box-shadow 180ms ease}
+  .comp:hover{transform:translateY(-6px); box-shadow:4px 6px 0 rgba(1,35,43,.18)}
+  .comp::before{content:attr(data-deco); font-family:var(--font-accent); font-weight:700;
+    text-transform:uppercase; font-size:30px; line-height:1.1; color:var(--color-accent);
+    text-shadow:3px 3px 0 var(--color-primary); margin-bottom:2px; overflow-wrap:anywhere}
+  .deco-orn{display:flex; flex-direction:column; align-items:center; gap:2px; margin-bottom:8px}
+  .deco-orn .stars{color:var(--color-primary); font-size:18px; letter-spacing:8px; line-height:1}
+  .comp h3{font-family:var(--font-body); font-weight:900; font-size:22px; margin:0 0 12px; color:var(--color-text)}
+  .comp .meta{align-self:stretch; text-align:left}
+  .comp .card, .comp .skill, .comp .avatar-demo{width:100%; text-align:left}
+  .comp .demo-nav{text-align:center}
+  .warn{display:inline-block; font-size:13px; font-weight:700; background:var(--color-secondary-deep); color:var(--color-text-inverse);
+    border-radius:9999px; padding:4px 10px; margin-bottom:8px}
+  /* Botón primario */
+  .btn-primary{
+    font-family:var(--font-accent); font-size:18px; font-weight:700; line-height:1.2;
+    background:var(--color-secondary-vivid); color:var(--color-primary);
+    border:none; border-radius:var(--radius-lg); padding:var(--space-btn-y) var(--space-btn-x);
+    min-height:44px; cursor:pointer;
+  }
+  .btn-primary:hover{background:var(--color-secondary)}
+  .btn-primary:active{background:var(--color-secondary-deep); color:var(--color-accent); transform:translateY(-2px)}
+  .btn-secondary{
+    font-family:var(--font-body); font-weight:900; font-size:18px;
+    background:var(--color-primary); color:var(--color-accent-light);
+    border:none; border-radius:var(--radius-xl); padding:var(--space-sm) 20px; min-height:44px; cursor:pointer;
+  }
+  .btn-secondary:hover{background:var(--color-accent-light); color:var(--color-primary)}
+  /* Tarjetas */
+  .card{border-radius:var(--radius-lg); padding:var(--space-card); transition:transform .15s ease}
+  .card h4{font-family:var(--font-accent); font-size:30px; font-weight:900; line-height:1.2; margin:0 0 8px}
+  .card p{font-family:var(--font-body); font-size:20px; line-height:1.6; margin:0}
+  .card-blue{background:var(--color-secondary); color:var(--color-background)}
+  .card-yellow{background:var(--color-accent-light); color:var(--color-primary)}
+  .card-red{background:var(--color-primary); color:var(--color-secondary)}
+  .card-blue:hover,.card-yellow:hover,.card-red:hover{transform:translateY(-6px)}
+  .card-edu{background:var(--color-background); color:var(--color-secondary); border-left:4px solid var(--color-primary); border-radius:var(--radius-md)}
+  .card-edu .row{display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap}
+  .card-edu .date{font-family:var(--font-body); color:var(--color-accent-light); background:var(--color-secondary-deep); border-radius:6px; padding:0 8px}
+  /* Campos */
+  label.field{display:block; font-size:16px; font-weight:700; margin-bottom:4px}
+  input.text{
+    font-family:var(--font-body); font-size:20px; color:var(--color-text); background:var(--color-white);
+    padding:var(--space-input-y) var(--space-input-x); border:2px solid var(--color-primary);
+    border-radius:var(--radius-md); width:100%; min-height:44px;
+  }
+  input.text:focus{border-color:var(--color-accent-light); box-shadow:0 0 0 4px rgba(251,193,108,.45); outline:none}
+  /* Enlaces */
+  .demo-nav a{font-family:var(--font-body); font-size:20px; color:var(--color-secondary-deep); text-decoration:none; margin-right:16px; min-height:44px; display:inline-block}
+  .demo-nav a:hover{color:var(--color-secondary-vivid); text-decoration:underline; text-decoration-thickness:2px}
+  .demo-nav a.active{text-decoration:underline; text-decoration-thickness:3px}
+  .inline-link{color:var(--color-secondary); text-decoration:none}
+  .inline-link:hover{color:var(--color-primary); text-decoration:underline}
+  /* Sociales */
+  .social{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; min-width:44px; min-height:44px;
+    background:var(--color-accent-light); color:var(--color-primary); border-radius:var(--radius-full); text-decoration:none; font-weight:900}
+  .social:hover{background:var(--color-primary); color:var(--color-accent-light)}
+  .social svg{width:20px; height:20px}
+  /* Etiquetas / modal / avatar / skills */
+  .tag{display:inline-block; font-family:var(--font-accent); font-size:18px; font-weight:700;
+    background:var(--color-secondary-vivid); color:var(--color-primary); border-radius:var(--radius-lg); padding:8px 14px}
+  .modal-demo{background:var(--color-secondary); color:var(--color-text-inverse); border-radius:var(--radius-lg); padding:var(--space-card)}
+  .avatar-demo{background:var(--color-accent-light); border-radius:var(--radius-lg); padding:16px; display:flex; gap:12px; align-items:center}
+  .avatar-face{width:64px; height:64px; border-radius:var(--radius-full); background:var(--color-secondary);
+    color:var(--color-text-inverse); display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-headline); font-size:28px}
+  .skill{background:var(--color-secondary); color:var(--color-text-inverse); border-radius:var(--radius-lg); padding:12px 16px; margin:8px 0}
+  .skill .dot{color:var(--color-primary); font-weight:900; margin-right:8px}
+
+  /* Do / Don't */
+  .do-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:16px}
+  .do,.dont{border-radius:var(--radius-lg); padding:16px}
+  .do{background:var(--color-text-inverse); border:2px solid var(--color-secondary-vivid)}
+  .dont{background:#fff; border:2px solid var(--color-primary)}
+  .do h3{color:var(--color-secondary-vivid)} .dont h3{color:var(--color-primary)}
+  .do ul,.dont ul{margin:8px 0 0; padding-left:20px; font-size:17px}
+
+  footer.site{padding:32px 0 64px; font-size:16px}
+  .copy-ok{font-size:14px; color:var(--color-secondary-vivid); min-height:20px; margin-top:4px}
+
+  @media (max-width:1023px){
+    h1.title{font-size:40px; line-height:40px}
+    .t-headline{font-size:40px; line-height:40px}
+    .t-body-lg{font-size:24px}
+  }
+  @media (max-width:599px){
+    body{font-size:18px}
+    .wrap{padding:0 var(--space-margin-mobile)}
+    nav.main{display:none}
+    nav.main.open{display:block}
+    nav.main ul{flex-direction:column; padding:8px 0; align-items:stretch}
+    nav.main.open a{width:100%}
+    .menu-btn{display:inline-block}
+    h1.title{font-size:32px; line-height:34px}
+    .t-headline{font-size:32px; line-height:34px}
+    .t-body-lg{font-size:20px}
+    .t-sub-lg{font-size:28px}
+    .t-sub-md{font-size:24px}
+    section.block{padding:32px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none !important; animation:none !important}
+    .card-blue:hover,.card-yellow:hover,.card-red:hover,.elev.lift:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#inicio">Zorro · Maximalista</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menú</button>
+    <nav class="main" id="mainNav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#colores">Colores</a></li>
+        <li><a href="#tipografia">Tipografía</a></li>
+        <li><a href="#espaciado">Espaciado</a></li>
+        <li><a href="#formas">Formas</a></li>
+        <li><a href="#componentes">Componentes</a></li>
+        <li><a href="#reglas">Reglas</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+<div class="wrap">
+
+  <section class="block" id="inicio" aria-labelledby="t-inicio">
+    <div class="hero-grid">
+      <div class="hero-card">
+        <p class="kicker">DESIGN.md · Marca Maximalista Expresiva</p>
+        <h1 class="title" id="t-inicio">Audaz, contrastante y expresiva</h1>
+        <div class="hero-orn" aria-hidden="true">
+          <span class="stars">★&nbsp;&nbsp;★</span>
+          <svg viewBox="0 0 120 12" width="120" height="12" aria-hidden="true"><path d="M2 8 Q 20 2, 40 7 T 78 7 T 118 6" fill="none" stroke="#D62828" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
+        <p class="lede">Maximalismo con claridad: el rojo da pasión, el azul da calma y el amarillo da energía, sobre una base marfil cálida y legible. El zorro, en azul y rojo, es la marca.</p>
+        <p class="meta">Esta página usa los tokens tal cual están en <code class="token">DESIGN.md</code>: 10 colores, 7 escalas tipográficas, 13 espaciados, 5 radios y 17 componentes. Las combinaciones con contraste bajo se muestran como son y llevan aviso.</p>
+        <span class="hero-tag">ZORRO</span>
+      </div>
+      <div class="hero-visual" role="img" aria-label="Marca gráfica maximalista: letra Z crema sobre superficie roja con capa azul desplazada">
+        <div class="hv-back" aria-hidden="true"></div>
+        <div class="hv-front" aria-hidden="true">
+          <span class="hv-mark">Z</span>
+          <span class="hv-stars top">★ ★</span>
+          <span class="hv-stars low">★ ★</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="colores" aria-labelledby="t-colores">
+    <p class="kicker">01 · Tokens <code class="token">colors.*</code></p>
+    <h2 class="sec" id="t-colores">Colores</h2>
+    <p class="lede">Toca el código para copiarlo. Cada color tiene un rol fijo: define siempre un dominante.</p>
+    <div class="swatches" id="swatches">
+      <article class="swatch lot-d" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Rojo Pulso, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#D62828">
+          <span class="lot-num" aria-hidden="true">01.</span>
+          <div class="lot-center"><span class="lot-label">Principal</span><p>Títulos, destacados y acentos. Energía e identidad. <code class="token">colors.primary</code></p></div>
+          <div class="lot-bottom"><h3>Rojo Pulso</h3><button class="hexbtn" data-hex="#D62828">#D62828</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#D62828" aria-hidden="true">
+          <span class="lot-num-static">01.</span>
+          <p class="lot-back-name">Rojo Pulso</p>
+          <p class="lot-back-hex">#D62828</p>
+          <p class="lot-back-token"><code class="token">colors.primary</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-l" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Amarillo Chispa, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#F0BB5D">
+          <span class="lot-num" aria-hidden="true">02.</span>
+          <div class="lot-center"><span class="lot-label">Acento</span><p>Solo para remarcar junto al rojo. <code class="token">colors.accent</code></p></div>
+          <div class="lot-bottom"><h3>Amarillo Chispa</h3><button class="hexbtn" data-hex="#F0BB5D">#F0BB5D</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#F0BB5D" aria-hidden="true">
+          <span class="lot-num-static">02.</span>
+          <p class="lot-back-name">Amarillo Chispa</p>
+          <p class="lot-back-hex">#F0BB5D</p>
+          <p class="lot-back-token"><code class="token">colors.accent</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-l" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Amarillo Luz, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#FBC16C">
+          <span class="lot-num" aria-hidden="true">03.</span>
+          <div class="lot-center"><span class="lot-label">Acento claro</span><p>Tarjetas, sociales y avatar. <code class="token">colors.accent-light</code></p></div>
+          <div class="lot-bottom"><h3>Amarillo Luz</h3><button class="hexbtn" data-hex="#FBC16C">#FBC16C</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#FBC16C" aria-hidden="true">
+          <span class="lot-num-static">03.</span>
+          <p class="lot-back-name">Amarillo Luz</p>
+          <p class="lot-back-hex">#FBC16C</p>
+          <p class="lot-back-token"><code class="token">colors.accent-light</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-d" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Azul Pausa, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#00485D">
+          <span class="lot-num" aria-hidden="true">04.</span>
+          <div class="lot-center"><span class="lot-label">Secundario</span><p>Subtítulos y fondos alternos. <code class="token">colors.secondary</code></p></div>
+          <div class="lot-bottom"><h3>Azul Pausa</h3><button class="hexbtn" data-hex="#00485D">#00485D</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#00485D" aria-hidden="true">
+          <span class="lot-num-static">04.</span>
+          <p class="lot-back-name">Azul Pausa</p>
+          <p class="lot-back-hex">#00485D</p>
+          <p class="lot-back-token"><code class="token">colors.secondary</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-d" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Azul Botón, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#006479">
+          <span class="lot-num" aria-hidden="true">05.</span>
+          <div class="lot-center"><span class="lot-label">Botón</span><p>Fondo de botón y etiquetas. <code class="token">colors.secondary-vivid</code></p></div>
+          <div class="lot-bottom"><h3>Azul Botón</h3><button class="hexbtn" data-hex="#006479">#006479</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#006479" aria-hidden="true">
+          <span class="lot-num-static">05.</span>
+          <p class="lot-back-name">Azul Botón</p>
+          <p class="lot-back-hex">#006479</p>
+          <p class="lot-back-token"><code class="token">colors.secondary-vivid</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-d" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Azul Profundo, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#003245">
+          <span class="lot-num" aria-hidden="true">06.</span>
+          <div class="lot-center"><span class="lot-label">Profundo</span><p>Presionado y enlaces del menú. <code class="token">colors.secondary-deep</code></p></div>
+          <div class="lot-bottom"><h3>Azul Profundo</h3><button class="hexbtn" data-hex="#003245">#003245</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#003245" aria-hidden="true">
+          <span class="lot-num-static">06.</span>
+          <p class="lot-back-name">Azul Profundo</p>
+          <p class="lot-back-hex">#003245</p>
+          <p class="lot-back-token"><code class="token">colors.secondary-deep</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-l" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Marfil Lienzo, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#FFFDEC">
+          <span class="lot-num" aria-hidden="true">07.</span>
+          <div class="lot-center"><span class="lot-label">Base</span><p>Fondo base cálido y legible. <code class="token">colors.background</code></p></div>
+          <div class="lot-bottom"><h3>Marfil Lienzo</h3><button class="hexbtn" data-hex="#FFFDEC">#FFFDEC</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#FFFDEC" aria-hidden="true">
+          <span class="lot-num-static">07.</span>
+          <p class="lot-back-name">Marfil Lienzo</p>
+          <p class="lot-back-hex">#FFFDEC</p>
+          <p class="lot-back-token"><code class="token">colors.background</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-d" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Carbón Tinta, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#01232B">
+          <span class="lot-num" aria-hidden="true">08.</span>
+          <div class="lot-center"><span class="lot-label">Texto</span><p>Párrafos y lectura. <code class="token">colors.text</code></p></div>
+          <div class="lot-bottom"><h3>Carbón Tinta</h3><button class="hexbtn" data-hex="#01232B">#01232B</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#01232B" aria-hidden="true">
+          <span class="lot-num-static">08.</span>
+          <p class="lot-back-name">Carbón Tinta</p>
+          <p class="lot-back-hex">#01232B</p>
+          <p class="lot-back-token"><code class="token">colors.text</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-l" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Crema Luz, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#F9F3C7">
+          <span class="lot-num" aria-hidden="true">09.</span>
+          <div class="lot-center"><span class="lot-label">Sobre oscuro</span><p>Texto sobre azul. <code class="token">colors.text-inverse</code></p></div>
+          <div class="lot-bottom"><h3>Crema Luz</h3><button class="hexbtn" data-hex="#F9F3C7">#F9F3C7</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#F9F3C7" aria-hidden="true">
+          <span class="lot-num-static">09.</span>
+          <p class="lot-back-name">Crema Luz</p>
+          <p class="lot-back-hex">#F9F3C7</p>
+          <p class="lot-back-token"><code class="token">colors.text-inverse</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+      <article class="swatch lot-l" tabindex="0" role="button" aria-pressed="false" aria-label="Carta de lotería Blanco, activar para voltear"><div class="lot-frame"><div class="flip-inner">
+        <div class="lot-inner flip-front" style="background:#FFFFFF">
+          <span class="lot-num" aria-hidden="true">10.</span>
+          <div class="lot-center"><span class="lot-label">Campos</span><p>Fondo de formularios. <code class="token">colors.white</code></p></div>
+          <div class="lot-bottom"><h3>Blanco</h3><button class="hexbtn" data-hex="#FFFFFF">#FFFFFF</button><div class="copy-ok" aria-live="polite"></div></div>
+        </div>
+        <div class="lot-inner flip-back" style="background:#FFFFFF" aria-hidden="true">
+          <span class="lot-num-static">10.</span>
+          <p class="lot-back-name">Blanco</p>
+          <p class="lot-back-hex">#FFFFFF</p>
+          <p class="lot-back-token"><code class="token">colors.white</code></p>
+          <p class="lot-back-hint">Toca para volver al frente</p>
+        </div>
+      </div></div></article>
+    </div>
+  </section>
+
+  <section class="block" id="tipografia" aria-labelledby="t-tipo">
+    <p class="kicker">02 · Tokens <code class="token">typography.*</code></p>
+    <h2 class="sec" id="t-tipo">Tipografía</h2>
+    <p class="lede">LCT Mogi solo en títulos en mayúsculas. Work Sans para leer y navegar. Sharpie Variable como acento. Nunca Mogi ni Sharpie en textos largos.</p>
+    <div class="type-demo"><p class="sample t-headline">Zorro maximalista</p><p class="meta">headline · LCT Mogi 700 · 50px / 48px · mayúsculas · <code class="token">typography.headline</code></p></div>
+    <div class="type-demo"><p class="sample t-body-lg">Calidez y claridad en cuerpo grande a 28px.</p><p class="meta">body-lg · Work Sans 400 · 28px / 1.6 · <code class="token">typography.body-lg</code></p></div>
+    <div class="type-demo"><p class="sample t-body-md">Cuerpo compacto de tarjetas y formularios a 20px con buena legibilidad.</p><p class="meta">body-md · Work Sans 400 · 20px / 1.6 · <code class="token">typography.body-md</code></p></div>
+    <div class="type-demo on-blue"><p class="sample t-sub-lg">Subtítulo con chispa</p><p class="meta">subtitle-lg · Sharpie Variable 700 · 35px / 1.2 · <code class="token">typography.subtitle-lg</code></p></div>
+    <div class="type-demo on-blue"><p class="sample t-sub-md">Subtítulo en tarjeta</p><p class="meta">subtitle-md · Sharpie Variable 900 · 30px / 1.2 · <code class="token">typography.subtitle-md</code></p></div>
+    <div class="type-demo"><p class="sample t-btn">Botón y etiqueta en Sharpie Bold 18px</p><p class="meta">button · Sharpie Variable 700 · 18px / 1.2 · <code class="token">typography.button</code></p></div>
+    <div class="type-demo"><p class="sample t-nav">Enlace de menú en Work Sans 20px</p><p class="meta">nav · Work Sans 400 · 20px / 1.5 · <code class="token">typography.nav</code></p></div>
+  </section>
+
+  <section class="block" id="espaciado" aria-labelledby="t-esp">
+    <p class="kicker">03 · Tokens <code class="token">spacing.*</code> · Layout</p>
+    <h2 class="sec" id="t-esp">Espaciado y retícula</h2>
+    <p class="lede">Unidad de 8px cerca y 16px en títulos. Asimetría ordenada, blanco intencional y secciones separadas 78px.</p>
+    <div class="space-row"><span style="width:120px">xs · 4px</span><div class="space-bar" style="width:4px"></div></div>
+    <div class="space-row"><span style="width:120px">sm · 8px</span><div class="space-bar" style="width:8px"></div></div>
+    <div class="space-row"><span style="width:120px">md · 16px</span><div class="space-bar" style="width:16px"></div></div>
+    <div class="space-row"><span style="width:120px">lg · 24px</span><div class="space-bar" style="width:24px"></div></div>
+    <div class="space-row"><span style="width:120px">xl · 32px</span><div class="space-bar" style="width:32px"></div></div>
+    <div class="space-row"><span style="width:120px">sección · 78px</span><div class="space-bar" style="width:78px"></div></div>
+    <div class="space-row"><span style="width:120px">tarjeta · 16px</span><div class="space-bar" style="width:16px"></div></div>
+    <div class="space-row"><span style="width:120px">botón · 12×24</span><div class="space-bar" style="width:24px"></div><div class="space-bar" style="width:12px; background:var(--color-primary)"></div></div>
+    <h3 class="t-btn">Retícula: 12 en escritorio · 9 en tableta · 6 en móvil</h3>
+    <div class="grid-demo grid-12" aria-hidden="true"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+    <div class="grid-demo grid-9" aria-hidden="true"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+    <div class="grid-demo grid-6" aria-hidden="true"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+    <p class="meta">Ancho máximo <code class="token">1440px</code> · margen móvil <code class="token">12px</code> · breakpoints 320–599 / 600–1023 / 1024+. En móvil todo se apila y los interactivos miden mínimo 44×44px.</p>
+  </section>
+
+  <section class="block" id="formas" aria-labelledby="t-form">
+    <p class="kicker">04 · Tokens <code class="token">rounded.*</code> · Formas y profundidad</p>
+    <h2 class="sec" id="t-form">Formas y elevación</h2>
+    <p class="lede">Ornamentos puntuales que suavizan el contraste. Esquinas de 5–10px. Sombra corta de 4–6px solo para interactuar, nunca de adorno.</p>
+    <div class="shape-row">
+      <div class="forma arco">arco · lg</div>
+      <div class="forma capsula">cápsula · xl</div>
+      <div class="forma placa">placa · sm</div>
+      <div class="forma marco-rojo"><span>marco · md</span></div>
+      <div class="forma marco-azul"><span>marco · md</span></div>
+      <div class="forma estrella" role="img" aria-label="Ornamento de estrella">ornamento</div>
+    </div>
+    <div class="elev-row">
+      <div class="elev flat"><h3 class="t-btn">Plano</h3><p class="t-body-md">Textos y navegación, sin sombra.</p></div>
+      <div class="elev lift"><h3 class="t-btn">Interactivo · hover</h3><p class="t-body-md">Sombra corta 4–6px y subida de 6px al pasar el cursor.</p></div>
+      <div class="elev modal-demo"><h3 class="t-btn" style="color:var(--color-text-inverse)">Modal azul</h3><p class="t-body-md">Fondo <code class="token">colors.secondary</code> con texto <code class="token">colors.text-inverse</code>.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="componentes" aria-labelledby="t-comp">
+    <p class="kicker">05 · Tokens <code class="token">components.*</code></p>
+    <h2 class="sec" id="t-comp">Componentes</h2>
+    <p class="lede">Muestras vivas con los valores exactos del sistema. Los avisos de contraste indican combinaciones de la marca que se leen con dificultad.</p>
+    <div class="comp-grid">
+      <article class="comp"><span class="warn">Contraste bajo 1.35:1</span><h3>Botón primario</h3>
+        <button class="btn-primary" type="button">Explorar obra</button>
+        <p class="meta">Fondo <code class="token">#006479</code> · texto <code class="token">#D62828</code> · Sharpie 18px · radio 10px · 12×24px. Hover oscurece; al presionar, más oscuro y salta.</p></article>
+      <article class="comp"><span class="warn">Contraste bajo 3.09:1</span><h3>Botón secundario</h3>
+        <button class="btn-secondary" type="button">★ Ver</button>
+        <p class="meta">Fondo <code class="token">#D62828</code> · texto <code class="token">#FBC16C</code> · radio 35px. Al pasar el cursor se invierte.</p></article>
+      <article class="comp"><h3>Tarjeta azul</h3>
+        <div class="card card-blue"><h4>Taller de color</h4><p>Subtítulo claro sobre azul con salto sutil al hover.</p></div></article>
+      <article class="comp"><span class="warn">Contraste bajo 3.09:1</span><h3>Tarjeta amarilla</h3>
+        <div class="card card-yellow"><h4>Feria gráfica</h4><p>Subtítulo rojo sobre amarillo, reparto mixto.</p></div></article>
+      <article class="comp"><span class="warn">Contraste bajo 2.01:1</span><h3>Tarjeta roja</h3>
+        <div class="card card-red"><h4>Noche colonial</h4><p>Subtítulo azul sobre rojo, solo para acentos.</p></div></article>
+      <article class="comp"><h3>Educación</h3>
+        <div class="card card-edu"><div class="row"><strong>Diseño integral</strong><span class="date">2024</span></div><p>Descripción en azul con borde lateral rojo de 4px.</p></div></article>
+      <article class="comp"><h3>Campo de texto</h3>
+        <label class="field" for="demoInput">Tu nombre</label>
+        <input class="text" id="demoInput" type="text" placeholder="Escribe aquí…" autocomplete="off">
+        <p class="meta">Fondo blanco · borde rojo 2px · radio 8px. Al enfocar, borde amarillo con halo.</p></article>
+      <article class="comp"><h3>Navegación y enlaces</h3>
+        <div class="demo-nav"><a href="#componentes" class="active" aria-current="page">Obra</a><a href="#componentes">Sobre mí</a><a href="#componentes">Contacto</a></div>
+        <p class="t-body-md">Enlace en texto: <a class="inline-link" href="#componentes">ver proceso</a> (subrayado rojo al hover).</p></article>
+      <article class="comp"><span class="warn">Contraste bajo 3.09:1</span><h3>Sociales · 32px</h3>
+        <p><a class="social" href="#componentes" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.4"/></svg></a>
+        <a class="social" href="#componentes" aria-label="Video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.5v5l4.5-2.5z"/></svg></a></p>
+        <p class="meta">Círculo amarillo con ícono rojo; al hover se invierte.</p></article>
+      <article class="comp"><span class="warn">Contraste bajo 1.35:1</span><h3>Etiqueta</h3>
+        <p><span class="tag">Ilustración</span> <span class="tag">Cartel</span></p>
+        <p class="meta">Fondo azul botón con texto rojo / amarillo.</p></article>
+      <article class="comp"><h3>Avatar + habilidades</h3>
+        <div class="avatar-demo"><div class="avatar-face" aria-hidden="true">Z</div><p class="t-body-md" style="margin:0">Foto con bitmap azul sobre amarillo.</p></div>
+        <div class="skill"><span class="dot">●</span>Ilustración editorial</div>
+        <div class="skill"><span class="dot">●</span>Cartel y sistemas visuales</div></article>
+      <article class="comp"><h3>Modal</h3>
+        <button class="btn-primary" type="button" id="openModal">Abrir modal</button>
+        <div class="modal-demo" id="modalDemo" hidden><h4 class="t-sub-md" style="color:var(--color-text-inverse); margin-top:0">Pieza destacada</h4><p class="t-body-md">Contenido sobre la interfaz en azul pausa.</p><button class="btn-secondary" type="button" id="closeModal">Cerrar</button></div></article>
+    </div>
+  </section>
+
+  <section class="block" id="reglas" aria-labelledby="t-reg">
+    <p class="kicker">06 · Do's and Don'ts</p>
+    <h2 class="sec" id="t-reg">Reglas</h2>
+    <div class="do-grid">
+      <div class="do"><h3 class="t-btn">Sí</h3><ul>
+        <li>Rojo dominante, amarillo de acento, azul para secundarios.</li>
+        <li>Marfil de base y carbón para leer.</li>
+        <li>Mogi en títulos, Work Sans al leer, Sharpie de acento.</li>
+        <li>Asimetría ordenada con retícula y jerarquía.</li>
+        <li>Blanco como pausa; sombras cortas 4–6px.</li>
+        <li>Radios 5–10px; estados siempre visibles.</li>
+      </ul></div>
+      <div class="dont"><h3 class="t-btn">No</h3><ul>
+        <li>Todo con la misma fuerza ni amarillo en textos largos.</li>
+        <li>Mogi o Sharpie en bloques de lectura.</li>
+        <li>Asimetría que se vuelve desorden.</li>
+        <li>Amontonar, comprimir o tapar la lectura.</li>
+        <li>Abusar de sombras, fondos y ornamentos.</li>
+        <li>Cambiar claridad por maximalismo: expresivo, no caótico.</li>
+      </ul></div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>Referencia visual generada desde <code class="token">DESIGN.md</code> · Marca Maximalista Expresiva · <span id="year"></span></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Año
+  document.getElementById('year').textContent = new Date().getFullYear();
+  // Menú móvil accesible
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('mainNav');
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // Copiar hex con anuncio para lector de pantalla
+  document.querySelectorAll('.hexbtn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var hex = b.getAttribute('data-hex');
+      var msg = b.parentElement.querySelector('.copy-ok');
+      function done(){ if(msg){ msg.textContent = hex + ' copiado'; } }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(hex).then(done, done);
+      } else {
+        var t = document.createElement('textarea');
+        t.value = hex; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch(e){}
+        document.body.removeChild(t); done();
+      }
+    });
+  });
+  // Navegación expresiva: la cápsula activa sigue a la sección
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#mainNav a'));
+  function setActive(link){
+    navLinks.forEach(function(a){ a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    if(link){ link.classList.add('active'); link.setAttribute('aria-current','page'); }
+  }
+  navLinks.forEach(function(a){
+    a.addEventListener('click', function(){
+      setActive(a);
+      nav.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+    });
+  });
+  if('IntersectionObserver' in window){
+    var linkByHash = {};
+    navLinks.forEach(function(a){ linkByHash[a.getAttribute('href')] = a; });
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && linkByHash['#' + e.target.id]){ setActive(linkByHash['#' + e.target.id]); }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    ['colores','tipografia','espaciado','formas','componentes','reglas'].forEach(function(id){
+      var s = document.getElementById(id); if(s){ spy.observe(s); }
+    });
+  }
+  // Fichas editoriales: rótulo decorativo + ornamentos rojos por tarjeta
+  var decoMap = {
+    'Botón primario':'Botón', 'Botón secundario':'Botón',
+    'Tarjeta azul':'Tarjeta', 'Tarjeta amarilla':'Tarjeta', 'Tarjeta roja':'Tarjeta',
+    'Educación':'Ficha', 'Campo de texto':'Campo', 'Navegación y enlaces':'Enlaces',
+    'Sociales · 32px':'Social', 'Etiqueta':'Sello', 'Avatar + habilidades':'Perfil', 'Modal':'Ventana'
+  };
+  document.querySelectorAll('.comp').forEach(function(card){
+    var h = card.querySelector('h3');
+    var label = h ? (decoMap[h.textContent.trim()] || h.textContent.trim().toUpperCase()) : '';
+    card.setAttribute('data-deco', label);
+    var orn = document.createElement('div');
+    orn.className = 'deco-orn'; orn.setAttribute('aria-hidden','true');
+    orn.innerHTML = '<span class="stars">★&nbsp;&nbsp;★</span><svg viewBox="0 0 120 12" width="120" height="12" aria-hidden="true"><path d="M2 8 Q 20 2, 40 7 T 78 7 T 118 6" fill="none" stroke="#D62828" stroke-width="3" stroke-linecap="round"/></svg>';
+    if(h){ card.insertBefore(orn, h); } else { card.appendChild(orn); }
+  });
+  // Flip de cartas de lotería: click/tap gira, hover solo eleva
+  document.querySelectorAll('.swatch').forEach(function(card){
+    function toggle(){
+      var on = card.classList.toggle('flipped');
+      card.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    card.addEventListener('click', function(e){
+      if(e.target.closest('.hexbtn')){ return; }
+      toggle();
+    });
+    card.addEventListener('keydown', function(e){
+      if(e.target !== card){ return; }
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+  // Flip genérico con el mismo gesto: hero-derecha, formas y componentes.
+  // Envuelve el frente tal cual (sin rediseñar) y añade un reverso derivado.
+  (function(){
+    function makeFlippable(el, name){
+      if(el.hasAttribute('data-flip')){ return null; }
+      var base = el.getAttribute('aria-label') || name;
+      el.setAttribute('data-flip','');
+      el.setAttribute('tabindex','0');
+      el.setAttribute('role','button');
+      el.setAttribute('aria-pressed','false');
+      el.setAttribute('aria-label', base + ', activar para voltear');
+      var inner = document.createElement('div');
+      inner.className = 'flip-inner';
+      var front = document.createElement('div');
+      front.className = 'flip-front';
+      while(el.firstChild){ front.appendChild(el.firstChild); }
+      var back = document.createElement('div');
+      back.className = 'flip-back';
+      back.setAttribute('aria-hidden','true');
+      back.setAttribute('inert','');
+      inner.appendChild(front);
+      inner.appendChild(back);
+      el.appendChild(inner);
+      return {front:front, back:back};
+    }
+    function toggleFlip(el, front){
+      var on = el.classList.toggle('flipped');
+      el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if(front){
+        if(on){ front.setAttribute('inert',''); }
+        else { front.removeAttribute('inert'); }
+      }
+    }
+    function bindFlip(el, front, guard){
+      el.addEventListener('click', function(e){
+        if(guard && e.target.closest(guard)){ return; }
+        toggleFlip(el, front);
+      });
+      el.addEventListener('keydown', function(e){
+        if(e.target !== el){ return; }
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleFlip(el, front); }
+      });
+    }
+    // 1) Hero, columna derecha: el reverso replica el visual
+    var hero = document.querySelector('.hero-visual');
+    if(hero){
+      var hp = makeFlippable(hero, 'Bloque visual del inicio');
+      if(hp){
+        hp.back.appendChild(hp.front.cloneNode(true));
+        bindFlip(hero, hp.front, null);
+      }
+    }
+    // 2) Formas: el reverso replica la forma
+    document.querySelectorAll('.forma').forEach(function(f){
+      var label = ((f.textContent || '').trim().replace(/\s+/g,' ')) || 'Forma';
+      var fp = makeFlippable(f, 'Forma ' + label);
+      if(!fp){ return; }
+      fp.back.appendChild(fp.front.cloneNode(true));
+      bindFlip(f, fp.front, null);
+    });
+    // 3) Componentes: el reverso muestra el nombre + pista (sin clonar botones ni IDs)
+    document.querySelectorAll('.comp').forEach(function(card){
+      var h = card.querySelector('h3');
+      var title = h ? h.textContent.trim() : 'Componente';
+      var cp = makeFlippable(card, 'Tarjeta ' + title);
+      if(!cp){ return; }
+      var nm = document.createElement('p');
+      nm.className = 'flip-back-name';
+      nm.textContent = title;
+      var hint = document.createElement('p');
+      hint.className = 'flip-back-hint';
+      hint.textContent = 'Toca para volver al frente';
+      cp.back.appendChild(nm);
+      cp.back.appendChild(hint);
+      bindFlip(card, cp.front, 'button, a, input, textarea, select');
+    });
+  })();
+  // Modal de muestra (div, sin librerías)
+  var open = document.getElementById('openModal');
+  var demo = document.getElementById('modalDemo');
+  var close = document.getElementById('closeModal');
+  open.addEventListener('click', function(){ demo.hidden = false; close.focus(); });
+  close.addEventListener('click', function(){ demo.hidden = true; open.focus(); });
+})();
+</script>
+</body>
+</html>
