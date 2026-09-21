@@ -89,6 +89,7 @@
   .bar{display:flex; align-items:center; gap:16px; min-height:92px; padding-top:12px; padding-bottom:12px}
   .brand{display:inline-flex; align-items:center; gap:12px; text-decoration:none; min-height:44px}
   .brand-fox{height:64px; width:auto; display:block; object-fit:contain}
+  .brand-logo{width:auto; height:auto; max-height:64px; max-width:220px; display:block; object-fit:contain}
   .brand-name{font-family:var(--font-headline); font-weight:700; font-size:25px; text-transform:uppercase; color:var(--color-primary); letter-spacing:.02em; line-height:.95; text-align:left}
   nav.main{margin-left:auto}
   nav.main ul{display:flex; gap:16px; list-style:none; margin:0; padding:0; flex-wrap:wrap; align-items:center}
@@ -400,6 +401,7 @@
     nav.main.open a{width:100%}
     .menu-btn{display:inline-block}
     .brand-fox{height:52px}
+    .brand-logo{max-height:52px; max-width:180px}
     .brand-name{font-size:21px}
     h1.title{font-size:32px; line-height:34px}
     .t-headline{font-size:32px; line-height:34px}
@@ -422,8 +424,7 @@
 <header class="site">
   <div class="wrap bar">
     <a class="brand" href="#inicio" aria-label="Vale Tamayo: inicio">
-      <img class="brand-fox" src="assets/Componentes/zorro.svg" alt="" width="147" height="182">
-      <span class="brand-name">VALE<br>TAMAYO</span>
+      <img class="brand-logo" src="assets/Componentes/loguito.svg" alt="" width="129" height="75">
     </a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menú</button>
     <nav class="main" id="mainNav" aria-label="Navegación principal">
