@@ -119,7 +119,8 @@
     border-radius:28px; padding:52px; min-width:0}
   .hero-card .kicker{margin-bottom:20px}
   .hero-card .title{margin:0; max-width:100%; overflow-wrap:break-word; text-wrap:balance;
-    font-size:clamp(34px, 4.6vw, 50px); line-height:1.05}
+    font-family:var(--font-accent); font-weight:800; text-transform:uppercase; color:var(--color-primary);
+    font-size:clamp(36px, 5vw, 54px); line-height:1.1}
   .hero-orn{display:flex; align-items:center; justify-content:center; gap:10px; margin:26px 0 4px}
   .hero-orn .orn-line{width:min(640px,92%)}
   .orn-star{height:30px; width:auto; object-fit:contain}
@@ -143,13 +144,13 @@
   .tag-back{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:rotateY(180deg)}
   @media (max-width:1023px) and (min-width:600px){
     .hero-card{padding:36px; border-width:12px; max-width:100%}
-    .hero-card .title{font-size:clamp(30px, 5vw, 42px)}
+    .hero-card .title{font-size:clamp(32px, 5.2vw, 46px)}
     .hero-tag{font-size:20px; right:28px}
   }
   @media (max-width:599px){
     #inicio{padding:48px 0 64px; min-height:0}
     .hero-card{padding:26px 22px 46px; border-width:10px; max-width:100%}
-    .hero-card .title{font-size:clamp(28px, 9vw, 34px)}
+    .hero-card .title{font-size:clamp(28px, 9vw, 36px)}
     .hero-card .kicker{margin-bottom:16px}
     .hero-orn{margin:20px 0 4px}
     .hero-orn{gap:10px}
@@ -162,7 +163,7 @@
   }
   .kicker{font-family:var(--font-accent); font-size:19px; font-weight:700; color:var(--color-primary); margin:0 0 8px}
   h1.title{
-    font-family:var(--font-headline); font-size:50px; line-height:48px; font-weight:700;
+    font-family:var(--font-accent); font-size:54px; line-height:1.1; font-weight:800;
     text-transform:uppercase; color:var(--color-primary); margin:0 0 16px;
   }
   h2.sec{font-family:var(--font-headline); font-size:34px; text-transform:uppercase; color:var(--color-primary); margin:0 0 8px}
@@ -173,24 +174,28 @@
 
   /* ============ COLORES · cartas de lotería ============ */
   .swatches{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:24px; align-items:stretch}
-  .swatch{background:var(--color-text-inverse); border:none; border-radius:26px; padding:18px; display:flex; min-height:480px}
+  .swatch{background:var(--color-text-inverse); border:none; border-radius:26px; padding:18px; display:flex; min-height:520px}
   .swatch.frame-blue{background:var(--color-secondary)}
   .lot-frame{flex:1; display:flex; min-width:0}
   .lot-inner{position:relative; flex:1; display:flex; flex-direction:column; border-radius:18px; padding:42px 16px 16px; overflow:hidden; min-width:0}
-  .lot-num{position:absolute; top:10px; left:14px; font-family:var(--font-accent); font-weight:700; font-size:16px; line-height:1}
+  .lot-inner.flip-front{padding:54px 26px 24px; gap:10px; justify-content:flex-start; text-align:left}
+  .lot-num{position:absolute; top:12px; left:18px; font-family:var(--font-accent); font-weight:700; font-size:16px; line-height:1}
   .lot-d .lot-inner{color:var(--color-background)}
   .lot-l .lot-inner{color:var(--color-text)}
-  .lot-label{align-self:flex-start; font-size:14px; font-family:var(--font-body); background:rgba(255,255,255,.88); color:#01232B; padding:2px 10px; border-radius:9999px}
-  .lot-center{flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; padding:8px 0}
-  .lot-center p{font-family:var(--font-body); font-size:15px; margin:0}
-  .lot-bottom h3{font-family:var(--font-accent); font-weight:700; text-transform:uppercase; font-size:30px; line-height:1.1; margin:12px 0 8px; overflow-wrap:break-word}
+  .lot-inner.flip-front .lot-bottom{display:contents}
+  .lot-inner.flip-front .lot-bottom h3{order:-2; font-family:var(--font-accent); font-weight:800; text-transform:uppercase; font-size:40px; line-height:1.05; margin:0; overflow-wrap:break-word; text-wrap:balance}
   .lot-d .lot-bottom h3{color:var(--color-background)}
   .lot-l .lot-bottom h3{color:var(--color-primary)}
-  .hexbtn{align-self:flex-start; font-family:ui-monospace,monospace; font-size:15px; border:2px solid currentColor; background:transparent;
-    color:inherit; border-radius:8px; padding:6px 10px; min-height:44px; cursor:pointer}
+  .lot-inner.flip-front .lot-center{order:-1; flex:0 1 auto; display:flex; flex-direction:column; align-items:flex-start; gap:10px; justify-content:flex-start; padding:0; margin:2px 0 0}
+  .lot-label{align-self:flex-start; font-family:var(--font-body); font-weight:700; font-size:17px; line-height:1.3; background:none; color:inherit; padding:0; border-radius:0; opacity:.92}
+  .lot-center p{font-family:var(--font-body); font-size:15px; line-height:1.55; margin:0; opacity:.92}
+  .lot-inner.flip-front .hexbtn{order:5; align-self:flex-start; margin-top:auto; font-family:ui-monospace,monospace; font-size:15px; border:2px solid currentColor; background:rgba(255,255,255,.12);
+    color:inherit; border-radius:9999px; padding:10px 20px; min-height:44px; cursor:pointer}
+  .lot-l .hexbtn{background:rgba(255,255,255,.45)}
   .hexbtn:hover{background:rgba(0,0,0,.06)}
-  @media (max-width:1023px){ .swatches{grid-template-columns:repeat(2,1fr)} .swatch{min-height:440px} }
-  @media (max-width:599px){ .swatches{grid-template-columns:1fr} .swatch{min-height:400px} }
+  .lot-inner.flip-front .copy-ok{order:6; min-height:0}
+  @media (max-width:1023px){ .swatches{grid-template-columns:repeat(2,1fr)} .swatch{min-height:470px} }
+  @media (max-width:599px){ .swatches{grid-template-columns:1fr} .swatch{min-height:430px} .lot-inner.flip-front .lot-bottom h3{font-size:34px} }
   /* Flip 3D: el hover solo eleva (en .swatch); el click gira (en .flip-inner) */
   .swatch{cursor:pointer; perspective:1200px; transition:transform 180ms ease, box-shadow 180ms ease}
   .swatch:hover{transform:translateY(-6px); box-shadow:4px 6px 0 rgba(1,35,43,.18)}
